@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ХимАлк — прямые поставки бытовой химии от производителей. Выбирайте лучшие бренды без посредников.">
+    <title>ХимАлк — бытовая химия напрямую</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --white: #ffffff;
+            --light-bg: #f5f7fa;
+            --dark-text: #0b1e2f;
+            --medium-text: #2d3a4a;
+            --accent: #0077b6;
+            --accent-hover: #005f8c;
+            --border-light: #e1e8f0;
+            --card-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            --card-hover-shadow: 0 18px 32px rgba(0,0,0,0.08);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ШАПКА — белый фон, логотип, меню, телефон */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 18px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            height: 44px;
+            width: auto;
+            background: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--medium-text);
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+
+        .header-phone {
+            font-weight: 700;
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 17px;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        .header-phone:hover {
+            color: var(--accent);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--dark-text);
+            margin-left: auto;
+            transition: color 0.2s;
+        }
+
+        .cart-icon:hover {
+            color: var(--accent);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -14px;
+            background: #e03a3a;
+            color: white;
+            border-radius: 20px;
+            min-width: 20px;
+            height: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(224,58,58,0.4);
+        }
+
+        /* HERO — полный экран с изображением */
+        .hero {
+            background: linear-gradient(105deg, #eef5fc 0%, #dceaf5 100%);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 460px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 44px;
+            font-weight: 800;
+            color: #0b2b44;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #2d3a4a;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0,119,182,0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0,119,182,0.2);
+        }
+
+        /* Фоновое изображение hero (конвейер) */
+        .hero-bg {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            max-height: 100%;
+            width: 50%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* Секция товаров — полноценная сетка */
+        .products-section {
+            background: var(--white);
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 26px;
+            border-radius: 40px;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--medium-text);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--card-shadow);
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .product-img {
+            background: #f8fafd;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-img img {
+            max-width: 100%;
+            max-height: 170px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: #d32f2f;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .product-info {
+            padding: 16px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-article {
+            font-size: 12px;
+            color: #7b8ba0;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 14px;
+            line-height: 1.4;
+            height: 42px;
+            overflow: hidden;
+            color: var(--dark-text);
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 18px;
+            margin-top: auto;
+        }
+
+        .price-current {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .price-old {
+            font-size: 15px;
+            color: #8f9bb0;
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            background: #f0f5fa;
+            border: 1px solid #dce3ec;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: var(--accent);
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .add-to-cart:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* ПРОМО-БАННЕР С РЯДОМ ТОВАРОВ */
+        .promo-row {
+            background: #0a1e32;
+            border-radius: var(--radius-lg);
+            margin: 50px 0;
+            padding: 40px 40px 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .promo-text {
+            flex: 1;
+            color: white;
+        }
+
+        .promo-text h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .promo-text p {
+            font-size: 18px;
+            color: #b0c7da;
+            margin-bottom: 24px;
+        }
+
+        .promo-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .promo-image img {
+            max-width: 100%;
+            max-height: 280px;
+            border-radius: 20px;
+            mix-blend-mode: lighten;
+        }
+
+        /* БЛОК "СДЕЛАТЬ ЗАКАЗ В ОДИН ДЕНЬ" */
+        .quick-order {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 50px 40px;
+            margin: 50px 0;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: var(--card-shadow);
+            flex-wrap: wrap;
+        }
+
+        .quick-order-gif {
+            flex: 1;
+            text-align: center;
+        }
+
+        .quick-order-gif img {
+            width: 100%;
+            max-width: 380px;
+            border-radius: 24px;
+        }
+
+        .quick-order-text {
+            flex: 1;
+        }
+
+        .quick-order-text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .quick-order-text p {
+            color: var(--medium-text);
+            font-size: 17px;
+            margin-bottom: 24px;
+        }
+
+        /* О КОМПАНИИ + СКЛАД */
+        .about {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 60px 0;
+            margin: 50px 0;
+        }
+
+        .about-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--medium-text);
+            margin-bottom: 24px;
+            font-size: 17px;
+        }
+
+        /* ФУТЕР */
+        .footer {
+            background: #0a1e32;
+            color: #cbd5e1;
+            padding: 48px 0 30px;
+            margin-top: 70px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            background: white;
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .footer-logo img {
+            height: 32px;
+            width: auto;
+        }
+
+        .footer a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .footer h4 {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Корзина (сайдбар) */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -6px 0 28px rgba(0,0,0,0.15);
+            z-index: 1000;
+            padding: 28px;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cart-close {
+            cursor: pointer;
+            font-size: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .main-nav {
+                gap: 16px;
+            }
+            .hero-bg {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 34px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo-area">
+            <img src="https://s10.iimage.su/s/05/gspkY5mxBqLuG8yDJNa4f0l3gacYqfyeGwDAOYT7O.jpg" alt="ХимАлк" class="logo-img">
+        </div>
+        <ul class="main-nav">
+            <li><a href="#catalog">Каталог</a></li>
+            <li><a href="#about">О компании</a></li>
+            <li><a href="#partners">Поставщикам</a></li>
+            <li><a href="#">Стать партнером</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+        <a href="tel:+78000000000" class="header-phone">8 (800) 000-XX-XX</a>
+        <div class="cart-icon" id="cartOpener">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cartCounter">0</span>
+        </div>
+    </div>
+</header>
+
+<!-- HERO с фоновым изображением -->
+<section class="hero">
+    <img src="https://s10.iimage.su/s/05/gLFM9NExG1XppWa8O2tSTjdM6kqAvuezSzosHPFBX.jpg" alt="Производство химии" class="hero-bg">
+    <div class="hero-content">
+        <h1>Бытовая химия напрямую от производителей</h1>
+        <p>ХимАлк сокращает путь от завода до вашего дома. Выбирайте лучшее без посредников.</p>
+        <a href="#catalog" class="btn btn-primary">Смотреть товары</a>
+        <a href="#" class="btn btn-outline" style="margin-left: 12px;">Стать партнером</a>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Каталог товаров -->
+    <div class="products-section" id="catalog">
+        <h2 class="section-title">📦 Каталог бытовой химии</h2>
+        <div class="category-filter" id="filterBar">
+            <button class="filter-btn active" data-category="all">Все товары</button>
+            <button class="filter-btn" data-category="Стирка">Стирка</button>
+            <button class="filter-btn" data-category="Уборка">Уборка</button>
+            <button class="filter-btn" data-category="Кондиционеры">Кондиционеры</button>
+            <button class="filter-btn" data-category="Посуда">Посуда</button>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <!-- Промо-баннер с рядом товаров -->
+    <div class="promo-row" id="partners">
+        <div class="promo-text">
+            <h2>Сотрудничайте напрямую с производителями</h2>
+            <p>Присоединяйтесь к платформе ХимАлк — мы открыты для поставщиков и готовы расширять ассортимент.</p>
+            <a href="#" class="btn btn-primary" style="background:white; color:#0a1e32;">Стать партнером</a>
+        </div>
+        <div class="promo-image">
+            <img src="https://s10.iimage.su/s/16/gLo30U6xIaeHi2oXzAvhT0rXqu2io9PQoPknrZ2Dm.png" alt="Ассортимент бытовой химии">
+        </div>
+    </div>
+
+    <!-- Заказ в один день (гифка) -->
+    <div class="quick-order">
+        <div class="quick-order-gif">
+            <img src="https://static.tildacdn.com/tild3935-6364-4330-b239-373432613661/interactive-website-.gif" alt="Быстрый заказ">
+        </div>
+        <div class="quick-order-text">
+            <h3>Сделать заказ в один день</h3>
+            <p>Оформляйте заявку онлайн, и мы доставим продукцию в кратчайшие сроки благодаря прямым контрактам.</p>
+            <a href="#" class="btn btn-outline">Подробнее</a>
+        </div>
+    </div>
+
+    <!-- О компании + склад -->
+    <div class="about" id="about">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://s10.iimage.su/s/16/gfRDJ10xwJEqR0GpLbZgjzMgy9HtzqVNEMFRBZD8P.webp" alt="Склад ХимАлк">
+            </div>
+            <div class="about-text">
+                <h2>Контроль качества и надежность</h2>
+                <p>ХимАлк работает напрямую с производителями, чтобы гарантировать подлинность и свежесть каждой позиции. Наши склады оборудованы для бережного хранения бытовой химии.</p>
+                <a href="#" class="btn btn-outline">О компании</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <div class="footer-logo">
+                <img src="https://s10.iimage.su/s/05/gspkY5mxBqLuG8yDJNa4f0l3gacYqfyeGwDAOYT7O.jpg" alt="ХимАлк">
+            </div>
+            <p style="margin-top: 12px;">Прямые поставки бытовой химии. Выбирайте производителей, которым доверяете.</p>
+        </div>
+        <div>
+            <h4>Каталог</h4>
+            <ul>
+                <li><a href="#">Стирка</a></li>
+                <li><a href="#">Уборка</a></li>
+                <li><a href="#">Кондиционеры</a></li>
+                <li><a href="#">Посуда</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Партнерам</h4>
+            <ul>
+                <li><a href="#">Стать партнером</a></li>
+                <li><a href="#">Поставщикам</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Контакты</h4>
+            <p>info@хималк.рф</p>
+            <p style="margin-top: 8px;">8 (800) 000-XX-XX</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Корзина (сайдбар) минимальный рабочий вариант -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <span>Корзина</span>
+        <span class="cart-close" id="closeCart">&times;</span>
+    </div>
+    <div id="cartItems" style="flex:1;">Корзина пуста</div>
+    <div style="font-weight:700; margin-top:16px;" id="cartTotal">Итого: 0 ₽</div>
+</div>
+
+<script>
+    (function() {
+        // Данные товаров (15 позиций + дополнительные, как вы прислали)
+        const products = [
+            { id: 1, name: "Чистящее средство «Универсал», Чистин, 750 г", price: 83, oldPrice: null, category: "Уборка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/22/225b0d86e2b1c50b8b1fd87b1d10e1e5.png" },
+            { id: 2, name: "Средство для чистки труб, Sanfor, 1000 г", price: 116, oldPrice: null, category: "Уборка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/oblozka_sanfor.png" },
+            { id: 3, name: "Капсулы для стирки, SI:LA Bleska, 21 шт.", price: 207, oldPrice: 229, category: "Стирка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/b2/b2c71e4d8a5e455d79d3628e828f71ca.jpg" },
+            { id: 4, name: "Гель для стирки, BIAL, 1500 мл", price: 149, oldPrice: null, category: "Стирка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/824b75bf87640205042f60cc9e0f5a12.jpg" },
+            { id: 5, name: "Кондиционер для белья, VESTAR, 1 л", price: 87, oldPrice: null, category: "Кондиционеры", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/a0b59657edf586d11d9e6e681d01b229.jpg" },
+            { id: 6, name: "Набор клеев, Master Hand", price: 116, oldPrice: null, category: "Уборка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/29/29b29c3bb9ff6fbe7986825fa9ea9427.jpg" },
+            { id: 7, name: "Экологичный стиральный порошок «IRMA Automat», 2,4 кг", price: 174.5, oldPrice: null, category: "Стирка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/9f/9f55957923fa9a5efa3d098f0c383316.jpg" },
+            { id: 8, name: "Кондиционер для белья парфюмированный, For best you, 750 мл", price: 116, oldPrice: null, category: "Кондиционеры", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/cd/cd04417207de7beab6124c5688f7e0ba.jpg" },
+            { id: 9, name: "Чистящее средство антижир «Azelit» GRASS, 600 мл", price: 180, oldPrice: 199, category: "Уборка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/07/0745036dd2d2604e0dee2c85af3dd02e.jpg" },
+            { id: 10, name: "Стиральный порошок, BiMax, 2,4 кг", price: 360, oldPrice: 399, category: "Стирка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/746631c45285cccd45884d122f8312fe.jpg" },
+            { id: 11, name: "Гель для стирки «Универсальный», Вестар, 2,5 л", price: 229, oldPrice: null, category: "Стирка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/62d2afaae3a16732772e361ba00fc3e2.jpg" },
+            { id: 12, name: "Гель для стирки, VESTAR, 1500 мл", price: 133, oldPrice: null, category: "Стирка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/01/01818c6cd1f646881b769deb989f1065.jpg" },
+            { id: 13, name: "Средство для мытья посуды, Sorti, 450 г", price: 89, oldPrice: null, category: "Посуда", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/8d/8de2fc1b69ae894e1406f90432371a3f.jpg" },
+            { id: 14, name: "Гель для мытья посуды, IRMA, 450 г", price: 105, oldPrice: null, category: "Посуда", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/84dbf35845347e5293b59ad3d617843b.jpg" },
+            { id: 15, name: "Освежитель воздуха, Gold Wind, 400 мл", price: 119, oldPrice: null, category: "Уборка", img: "https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/94001b65b1a26dd2300adc992cf93f01.jpg" },
+            { id: 16, name: "Средство универсальное, Доместос, 1,5 л", price: 279, oldPrice: null, category: "Уборка", img: "https://img.fix-price.com/insecure/rs:fit:800:800/plain/pim/images/_default_upload_bucket/1a81b46404e9371d1ee42b049b9ba1c5.jpg" },
+            { id: 17, name: "Мыло хозяйственное твёрдое, 65%, 180 г", price: 39.5, oldPrice: null, category: "Уборка", img: "https://img.fix-price.com/insecure/rs:fit:800:800/plain/pim/images/_default_upload_bucket/979ddc80ef13f51e57b28e830a1e0f5b.jpg" },
+            { id: 18, name: "Кондиционер для белья, E, 2 л", price: 229, oldPrice: null, category: "Кондиционеры", img: "https://img.fix-price.com/insecure/rs:fit:800:800/plain/pim/images/_default_upload_bucket/776a65d9c641801b055244f169eee899.jpg" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('khimalkCart')) || [];
+        let activeFilter = 'all';
+
+        const productsGrid = document.getElementById('productsGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cartCounter = document.getElementById('cartCounter');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const closeCartBtn = document.getElementById('closeCart');
+        const cartOpener = document.getElementById('cartOpener');
+
+        function renderProducts(filter = 'all') {
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            productsGrid.innerHTML = filtered.map(p => `
+                <div class="product-card">
+                    <div class="product-img" style="position:relative;">
+                        <img src="${p.img}" alt="${p.name}" loading="lazy">
+                        ${p.oldPrice ? '<span class="product-badge">Акция</span>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-article">Арт. ${p.id}</div>
+                        <div class="product-name">${p.name}</div>
+                        <div class="price-row">
+                            <span class="price-current">${p.price} ₽</span>
+                            ${p.oldPrice ? `<span class="price-old">${p.oldPrice} ₽</span>` : ''}
+                        </div>
+                        <button class="add-to-cart" data-id="${p.id}">В корзину</button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    addToCart(id);
+                });
+            });
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            saveCart();
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartUI();
+        }
+
+        function saveCart() {
+            localStorage.setItem('khimalkCart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCounter.textContent = totalQuantity;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = 'Корзина пуста';
+                cartTotal.textContent = 'Итого: 0 ₽';
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eef2f6; padding-bottom:8px;">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            ${item.price} ₽ x ${item.quantity}
+                        </div>
+                        <button class="remove-item" data-id="${item.id}" style="background:none; border:none; color:#d32f2f; cursor:pointer;">✕</button>
+                    </div>
+                `).join('');
+                const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                cartTotal.textContent = `Итого: ${total} ₽`;
+            }
+
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    removeFromCart(parseInt(this.dataset.id));
+                });
+            });
+        }
+
+        // Фильтры
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeFilter = this.dataset.category;
+                renderProducts(activeFilter);
+            });
+        });
+
+        // Корзина открыть/закрыть
+        cartOpener.addEventListener('click', () => cartSidebar.classList.add('open'));
+        closeCartBtn.addEventListener('click', () => cartSidebar.classList.remove('open'));
+
+        // Инициализация
+        renderProducts();
+        updateCartUI();
+    })();
+</script>
+
+</body>
+</html>
