@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Интернет‑магазин бытовой химии ХимАлк. Прямые поставки от производителей. Оптовые и розничные закупки.">
+    <meta name="keywords" content="бытовая химия, магазин химии, ХимАлк, оптовые закупки, производители бытовой химии">
+    <title>ХимАлк — маркетплейс бытовой химии от производителей</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- Базовые стили ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Шапка */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header__top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header__logo {
+            flex: 1;
+        }
+
+        .logo-img {
+            height: 60px;
+        }
+
+        .header__search {
+            flex: 2;
+            display: flex;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .header__contacts {
+            flex: 1;
+            text-align: right;
+        }
+
+        .contact-item {
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            margin-right: 5px;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .work-hours {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Навигация */
+        .main-nav {
+            background: #f8f9fa;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .cart-link {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Главный баннер */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin: 15px 0;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn--primary {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn--primary:hover {
+            background: #ff5252;
+        }
+
+        .btn--secondary {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn--secondary:hover {
+            background: #218837;
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: #007bff;
+            border: 2px solid #007bff;
+        }
+
+        .btn--outline:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Промо-баннер */
+        .promo-banner {
+            padding: 40px 0;
+            background: #f1f1f1;
+        }
+
+        .promo-img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        /* Категории */
+        .categories {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Товары */
+        .products {
+            padding: 60px 0;
+            background: #f9f9f9;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            padding: 15px;
+            background: #f5f5f5;
+        }
+
+        .product-title {
+            padding: 0 15px 10px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .product-category {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+
+        .price-current {
+            color: #e74c3c;
+        }
+
+        .products-controls {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Акции */
+        .promotions {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .promotions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .promotion-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Производители */
+        .producers {
+            padding: 60px 0;
+            background: #f9f9f9;
+        }
+
+        .producers-slider {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .producer-logo {
+            flex: 0 0 120px;
+        }
+
+        .producer-logo img {
+            width: 100%;
+            height: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .producer-logo img:hover {
+            opacity: 1;
+        }
+
+        /* О компании */
+        .about {
+            padding: 80px 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .warehouse-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Процесс заказа */
+        .order-process {
+            padding: 60px 0;
+            background: #f1f1f1;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+
+        .process-animation {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .animation-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Отзывы */
+        .reviews {
+            padding: 60px 0;
+        }
+
+        .reviews-slider {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #007bff #f1f1f1;
+        }
+
+        .reviews-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .reviews-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .reviews-slider::-webkit-scrollbar-thumb {
+            background: #007bff;
+            border-radius: 4px;
+        }
+
+        .review-card {
+            min-width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .review-rating {
+            color: #ffc107;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .review-author {
+            text-align: right;
+            color: #666;
+        }
+
+        /* Партнёрство */
+        .partnership {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .partnership-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .partnership-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .partnership-benefits {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .partnership-benefits li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .partnership-benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .partnership-image {
+            flex: 1;
+        }
+
+        .partnership-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Подвал */
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-title {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-list {
+            list-style: none;
+        }
+
+        .footer-list li {
+            margin-bottom: 8px;
+        }
+
+        .footer-list a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-list a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+        }
+
+        .copyright {
+            color: #bbb;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: #fff;
+        }
+
+        /* Модальное окно корзины */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+            animation: modal-fade-in 0.3s;
+        }
+
+        @keyframes modal-fade-in {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-item {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0 30px;
+            padding-top: 20px;
+            border-top: 2px solid #007bff;
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Загрузчик */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .header__top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero-content, .about-content, .partnership-content {
+                flex-direction: column;
+            }
+            .hero-image, .about-image, .partnership-image {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__search {
+                width: 100%;
+            }
+            .search-input {
+                width: 70%;
+            }
+            .products-grid, .promotions-grid {
+                grid-template-columns: 1fr;
+            }
+            .reviews-slider {
+                flex-direction: column;
+            }
+            .review-card {
+                min-width: auto;
+                margin-bottom: 20px;
+            }
+            .footer-top {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Утилиты */
+        .text-center {
+            text-align: center;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+        .p-20 {
+            padding: 20px;
+        }
+        :focus {
+            outline: 2px solid #007bff;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<header class="header">
+    <div class="container">
+        <div class="header__top">
+            <div class="header__logo">
+                <a href="/">
+                    <img src="https://s10.iimage.su/s/05/gspkY5mxBqLuG8yDJNa4f0l3gacYqfyeGwDAOYT7O.jpg" alt="Логотип ХимАлк" class="logo-img">
+                </a>
+            </div>
+            <div class="header__search">
+                <input type="text" placeholder="Поиск товаров, брендов, категорий..." class="search-input" id="searchInput">
+                <button class="search-btn" id="searchButton">Найти</button>
+            </div>
+            <div class="header__contacts">
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <a href="tel:+74951234567" class="contact-link">+7 (495) 123-45-67</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <a href="mailto:info@himalk.ru" class="contact-link">info@himalk.ru</a>
+                </div>
+                <div class="work-hours">Пн–Пт: 9:00–18:00</div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#categories" class="nav-link">Категории</a></li>
+                <li class="nav-item"><a href="#promotions" class="nav-link">Акции</a></li>
+                <li class="nav-item"><a href="#producers" class="nav-link">Производители</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">О компании</a></li>
+                <li class="nav-item"><a href="#contacts" class="nav-link">Контакты</a></li>
+                <li class="nav-item nav-item--cart">
+                    <a href="#" class="nav-link cart-link" id="cartLink">Корзина (<span id="cartCount">0</span>)</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Главный баннер -->
+<section class="hero-section">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+            <div class="hero-content">
+                <h1>Бытовая химия напрямую от производителей</h1>
+                <p class="hero-subtitle">Упрощаем цепочку продаж: от завода — к покупателю. Без лишних наценок.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-text">производителей</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10 000+</span>
+                        <span class="stat-text">товаров в каталоге</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24 ч</span>
+                        <span class="stat-text">обработка заказа</span>
+                    </div>
+                </div>
+                <a href="#catalog" class="btn btn--primary">Перейти в каталог</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://s10.iimage.su/s/05/gLFM9NExG1XppWa8O2tSTjdM6kqAvuezSzosHPFBX.jpg" alt="Бытовая химия на конвейере" class="hero-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Промо-баннер -->
+<section class="promo-banner">
+    <div class="container">
+        <img src="https://s10.iimage.su/s/16/g0KaLXZx5agSpPNANuQAcUy5I30y2ooykSDUd69lg.png" alt="Промо-акция" class="promo-img">
+    </div>
+</section>
+
+<!-- Категории товаров -->
+<section class="categories" id="categories">
+    <div class="container">
+        <h2 class="section-title">Категории товаров</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <h3>Уборка</h3>
+                <p>Средства для уборки помещений</p>
+                <a href="/catalog/cleaning" class="category-link">Смотреть товары →</a>
+            </div>
+            <div class="category-card">
+                <h3>Стирка</h3>
+                <p>Порошки, гели, кондиционеры</p>
+                <a href="/catalog/washing" class="category-link">Смотреть товары →</a>
+            </div>
+            <div class="category-card">
+                <h3>Посуда</h3>
+                <p>Средства для мытья посуды</p>
+                <a href="/catalog/dishes" class="category-link">Смотреть товары →</a>
+            </div>
+            <div class="category-card">
+                <h3>Дезинфекция</h3>
+                <p>Антисептики и дезинфекторы</p>
+                <a href="/catalog/disinfection" class="category-link">Смотреть товары →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Популярные товары -->
+<section class="products" id="catalog">
+    <div class="container">
+        <h2 class="section-title">Популярные товары</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Товар 1 -->
+            <div class="product-card" data-category="Уборка">
+                <img src="https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/22/225b0d86e2b1c50b8b1fd87b1d10e1e5.png" alt="Чистящее средство «Универсал»" class="product-img">
+                <h3 class="product-title">Чистящее средство «Универсал», Чистин, 750 г</h3>
+                <p class="product-category">Уборка</p>
+                <p class="product-price">83 ₽</p>
+                <button class="btn btn--secondary add-to-cart" data-id="1" data-name="Чистящее средство «Универсал», Чистин" data-price="83">В корзину</button>
+            </div>
+            <!-- Товар 2 -->
+            <div class="product-card" data-category="Уборка">
+                <img src="https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/oblozka_sanfor.png" alt="Средство для чистки труб, Sanfor" class="product-img">
+                <h3 class="product-title">Средство для чистки труб, Sanfor, 1000 г</h3>
+                <p class="product-category">Уборка</p>
+                <p class="product-price">116 ₽</p>
+                <button class="btn btn--secondary add-to-cart" data-id="2" data-name="Средство для чистки труб, Sanfor" data-price="116">В корзину</button>
+            </div>
+            <!-- Товар 3 -->
+            <div class="product-card" data-category="Стирка">
+                <img src="https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/b2/b2c71e4d8a5e455d79d3628e828f71ca.jpg" alt="Капсулы для стирки, SI:LA Bleska" class="product-img">
+                <h3 class="product-title">Капсулы для стирки, SI:LA Bleska, 21 шт.</h3>
+                <p class="product-category">Стирка</p>
+                <p class="product-price"><span class="price-old">229 ₽</span> <span class="price-current">207 ₽</span></p>
+                <button class="btn btn--secondary add-to-cart" data-id="3" data-name="Капсулы для стирки, SI:LA Bleska" data-price="207">В корзину</button>
+            </div>
+            <!-- Товар 4 -->
+            <div class="product-card" data-category="Стирка">
+                <img src="https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/824b75bf87640205042f60cc9e0f5a12.jpg" alt="Гель для стирки, BIAL" class="product-img">
+                <h3 class="product-title">Гель для стирки, BIAL, 1500 мл</h3>
+                <p class="product-category">Стирка</p>
+                <p class="product-price">149 ₽</p>
+                <button class="btn btn--secondary add-to-cart" data-id="4" data-name="Гель для стирки, BIAL" data-price="149">В корзину</button>
+            </div>
+            <!-- Товар 5 -->
+            <div class="product-card" data-category="Кондиционеры">
+                <img src="https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/a0b59657edf586d11d9e6e681d01b229.jpg" alt="Кондиционер для белья, VESTAR" class="product-img">
+                <h3 class="product-title">Кондиционер для белья, VESTAR, 1 л</h3>
+                <p class="product-category">Кондиционеры</p>
+                <p class="product-price">87 ₽</p>
+                <button class="btn btn--secondary add-to-cart" data-id="5" data-name="Кондиционер для белья, VESTAR" data-price="87">В корзину</button>
+            </div>
+            <!-- Товар 6 (добавлен позже) -->
+            <div class="product-card" data-category="Уборка">
+                <img src="https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/8d/8de2fc1b69ae894e1406f90432371a3f.jpg" alt="Средство для мытья посуды Sorti" class="product-img">
+                <h3 class="product-title">Средство для мытья посуды Sorti, 450 г</h3>
+                <p class="product-category">Посуда</p>
+                <p class="product-price">89 ₽</p>
+                <button class="btn btn--secondary add-to-cart" data-id="6" data-name="Средство для мытья посуды Sorti" data-price="89">В корзину</button>
+            </div>
+            <!-- Товар 7 (добавлен позже) -->
+            <div class="product-card" data-category="Стирка">
+                <img src="https://img.fix-price.com/insecure/rs:fit:300:300/plain/bit/_marketplace/images/origin/66/66fa7fc7520524981486e4b4af71f95a.jpg" alt="Стиральный порошок TIDE Color" class="product-img">
+                <h3 class="product-title">Стиральный порошок TIDE Color, 1950 г</h3>
+                <p class="product-category">Стирка</p>
+                <p class="product-price">299 ₽</p>
+                <button class="btn btn--secondary add-to-cart" data-id="7" data-name="Стиральный порошок TIDE Color" data-price="299">В корзину</button>
+            </div>
+        </div>
+        <div class="products-controls">
+            <button class="btn btn--outline" id="loadMore">Загрузить ещё товары</button>
+        </div>
+    </div>
+</section>
+
+<!-- Акции -->
+<section class="promotions" id="promotions">
+    <div class="container">
+        <h2 class="section-title">Специальные предложения</h2>
+        <div class="promotions-grid">
+            <div class="promotion-card">
+                <div class="discount-badge">−20%</div>
+                <h3>Экологичные средства</h3>
+                <p>Натуральные составы без фосфатов</p>
+                <a href="/catalog/eco" class="btn btn--primary">Смотреть акции</a>
+            </div>
+            <div class="promotion-card">
+                <div class="discount-badge">−15%</div>
+                <h3>Средства для стирки</h3>
+                <p>Гели и порошки ведущих брендов</p>
+                <a href="/catalog/washing" class="btn btn--primary">Смотреть акции</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Производители -->
+<section class="producers" id="producers">
+    <div class="container">
+        <h2 class="section-title">Наши производители</h2>
+        <div class="producers-slider">
+            <div class="producer-logo"><img src="/images/producers/chistin.png" alt="Чистин" class="logo-img"></div>
+            <div class="producer-logo"><img src="/images/producers/sanfor.png" alt="Sanfor" class="logo-img"></div>
+            <div class="producer-logo"><img src="/images/producers/vesstar.png" alt="VESTAR" class="logo-img"></div>
+            <div class="producer-logo"><img src="/images/producers/biolan.png" alt="Биолан" class="logo-img"></div>
+        </div>
+    </div>
+</section>
+
+<!-- О компании -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div>
+                <h2 class="section-title" style="text-align: left;">О компании ХимАлк</h2>
+                <p class="about-text">Мы создаём платформу для прямых поставок бытовой химии от производителей к оптовым и розничным покупателям. Наша миссия — упростить цепочку продаж и сделать качественные товары доступными.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5 лет</span>
+                        <span class="stat-text">на рынке</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">300+</span>
+                        <span class="stat-text">партнёров</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-text">клиентов довольны</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://i.imgur.com/y7QZlZK.jpg" alt="Склад компании ХимАлк" class="warehouse-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Процесс заказа -->
+<section class="order-process">
+    <div class="container">
+        <h2 class="section-title">Как сделать заказ за 1 день</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Выбор товара</h3>
+                <p>Подберите нужные позиции в каталоге</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Оформление</h3>
+                <p>Добавьте в корзину и оформите заказ</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Оплата</h3>
+                <p>Выберите удобный способ оплаты</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Доставка</h3>
+                <p>Получите товар в кратчайшие сроки</p>
+            </div>
+        </div>
+        <div class="process-animation">
+            <img src="https://static.tildacdn.com/tild3935-6364-4330-b239-373432613661/interactive-website-.gif" alt="Процесс оформления заказа" class="animation-img">
+        </div>
+    </div>
+</section>
+
+<!-- Отзывы клиентов -->
+<section class="reviews" id="reviews">
+    <div class="container">
+        <h2 class="section-title">Отзывы наших клиентов</h2>
+        <div class="reviews-slider">
+            <div class="review-card">
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">«Отличная платформа для оптовых закупок. Цены действительно ниже рыночных, а доставка быстрая.»</p>
+                <div class="review-author">— Анна, ИП Смирнова</div>
+            </div>
+            <div class="review-card">
+                <div class="review-rating">★★★★☆</div>
+                <p class="review-text">«Удобно работать напрямую с производителями. Ассортимент постоянно расширяется.»</p>
+                <div class="review-author">— Дмитрий, магазин «Чистый дом»</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Партнёрство -->
+<section class="partnership">
+    <div class="container">
+        <div class="partnership-content">
+            <div>
+                <h2 class="section-title" style="text-align: left;">Стать партнёром ХимАлк</h2>
+                <p class="partnership-text">Приглашаем производителей и дистрибьюторов бытовой химии к сотрудничеству. Мы обеспечим:</p>
+                <ul class="partnership-benefits">
+                    <li>Прямой доступ к оптовым и розничным покупателям</li>
+                    <li>Продвижение вашей продукции</li>
+                    <li>Логистическую поддержку</li>
+                    <li>Гибкие условия сотрудничества</li>
+                </ul>
+                <a href="/partnership" class="btn btn--primary">Оставить заявку</a>
+            </div>
+            <div class="partnership-image">
+                <img src="/images/partnership.jpg" alt="Сотрудничество с ХимАлк" class="partnership-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Подвал -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-column">
+                <h3 class="footer-title">Компания</h3>
+                <ul class="footer-list">
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="/careers">Вакансии</a></li>
+                    <li><a href="/news">Новости</a></li>
+                    <li><a href="/documents">Документы</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Покупателям</h3>
+                <ul class="footer-list">
+                    <li><a href="/catalog">Каталог товаров</a></li>
+                    <li><a href="/promotions">Акции</a></li>
+                    <li><a href="/delivery">Доставка и оплата</a></li>
+                    <li><a href="/returns">Возврат</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Партнёрам</h3>
+                <ul class="footer-list">
+                    <li><a href="/partnership">Стать партнёром</a></li>
+                    <li><a href="/producers-guide">Руководство для производителей</a></li>
+                    <li><a href="/logistics">Логистика</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Контакты</h3>
+                <ul class="footer-list">
+                    <li>+7 (495) 123-45-67</li>
+                    <li>info@himalk.ru</li>
+                    <li>г. Москва, ул. Промышленная, 15</li>
+                    <li>Пн–Пт: 9:00–18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2024 ХимАлк. Все права защищены.</div>
+            <div class="social-links">
+                <a href="#" class="social-link">VK</a>
+                <a href="#" class="social-link">Telegram</a>
+                <a href="#" class="social-link">YouTube</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Модальное окно корзины -->
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Корзина</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <strong>Итого: <span id="cartTotal">0</span> ₽</strong>
+        </div>
+        <button class="btn btn--primary" id="checkoutBtn">Оформить заказ</button>
+    </div>
+</div>
+
+<script>
+    // Корзина (глобальные переменные)
+    let cart = [];
+    const cartCountSpan = document.getElementById('cartCount');
+    const cartTotalSpan = document.getElementById('cartTotal');
+    const cartItemsDiv = document.getElementById('cartItems');
+    const modal = document.getElementById('cartModal');
+    const closeModalSpan = document.querySelector('.close');
+
+    // Функция обновления отображения корзины
+    function updateCart() {
+        cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotalSpan.textContent = total;
+
+        if (cartItemsDiv) {
+            cartItemsDiv.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>${item.quantity} × ${item.price} ₽</span>
+                    <button class="remove-item" data-id="${item.id}">×</button>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    cart = cart.filter(item => item.id !== id);
+                    updateCart();
+                    showNotification('Товар удалён из корзины');
+                });
+            });
+        }
+    }
+
+    // Добавление в корзину
+    function addToCart(id, name, price) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ id, name, price, quantity: 1 });
+        }
+        updateCart();
+        showNotification(`${name} добавлен в корзину`);
+    }
+
+    // Показать уведомление
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.classList.add('show'), 100);
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Обработчики для кнопок "В корзину"
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const price = parseFloat(this.getAttribute('data-price'));
+            addToCart(id, name, price);
+        });
+    });
+
+    // Обработка модального окна корзины
+    const cartLink = document.getElementById('cartLink');
+    if (cartLink) {
+        cartLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.style.display = 'block';
+        });
+    }
+    if (closeModalSpan) {
+        closeModalSpan.addEventListener('click', () => modal.style.display = 'none');
+    }
+    window.addEventListener('click', e => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // Оформление заказа
+    document.getElementById('checkoutBtn').addEventListener('click', function() {
+        if (cart.length === 0) {
+            showNotification('Корзина пуста!');
+            return;
+        }
+        alert('Оформление заказа... В реальной реализации здесь будет перенаправление на страницу оплаты.');
+        // Здесь можно добавить отправку на сервер
+    });
+
+    // Поиск
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchButton');
+    function handleSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+            alert(`Поиск по запросу: "${query}"\nВ реальной реализации здесь будет фильтрация товаров.`);
+        } else {
+            showNotification('Введите запрос для поиска');
+        }
+    }
+    searchBtn.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSearch(); });
+
+    // Загрузка дополнительных товаров
+    const loadMoreBtn = document.getElementById('loadMore');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            const loader = document.createElement('div');
+            loader.className = 'loader';
+            this.parentNode.insertBefore(loader, this);
+
+            setTimeout(() => {
+                const newProducts = [
+                    { id: '8', name: 'Средство для мытья стёкол, CleanGlass', price: 95, category: 'Уборка', image: 'https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/clean-glass.jpg' },
+                    { id: '9', name: 'Антибактериальное мыло, Sanit', price: 65, category: 'Гигиена', image: 'https://img.fix-price.com/insecure/rs:fit:300:300/plain/pim/images/_default_upload_bucket/sanit-soap.jpg' }
+                ];
+                const productsGrid = document.getElementById('productsGrid');
+                newProducts.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.setAttribute('data-category', product.category);
+                    card.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="product-img">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-category">${product.category}</p>
+                        <p class="product-price">${product.price} ₽</p>
+                        <button class="btn btn--secondary add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">В корзину</button>
+                    `;
+                    productsGrid.appendChild(card);
+                });
+                // Перепривязываем обработчики к новым кнопкам
+                document.querySelectorAll('.add-to-cart').forEach(btn => {
+                    btn.removeEventListener('click', arguments.callee);
+                    btn.addEventListener('click', function() {
+                        addToCart(this.getAttribute('data-id'), this.getAttribute('data-name'), parseFloat(this.getAttribute('data-price')));
+                    });
+                });
+                loader.remove();
+                showNotification('Загружено 2 новых товара');
+            }, 1500);
+        });
+    }
+
+    // Инициализация корзины при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCart();
+    });
+</script>
+</body>
+</html>
