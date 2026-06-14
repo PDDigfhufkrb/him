@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Дистрикор — официальный дистрибьютор бытовой химии</title>
+    <meta name="description" content="Дистрикор — оптовые поставки бытовой химии, моющих средств и хозтоваров. Прямые контракты с заводами, доставка по РФ, работа с маркетплейсами, клинингом и госзакупками.">
+    <meta name="keywords" content="оптовая продажа бытовой химии, дистрибьютор бытовой химии, моющие средства оптом, жидкое мыло оптом, средства для уборки оптом">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a2c3e;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* Прелоадер */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .preloader-logo {
+            width: 80px;
+            height: 80px;
+            background: #f0f4f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+        .preloader-text {
+            font-size: 14px;
+            color: #0078b6;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+        /* Шапка */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #eef2f8;
+        }
+        .header-top {
+            background: #f8fafd;
+            padding: 8px 0;
+            font-size: 13px;
+            color: #5e7c99;
+            border-bottom: 1px solid #eef2f8;
+        }
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .header-top-links {
+            display: flex;
+            gap: 24px;
+        }
+        .header-top-links a {
+            text-decoration: none;
+            color: #5e7c99;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-img {
+            height: 160px;
+            width: auto;
+            display: block;
+            transition: transform 0.2s;
+        }
+        .logo-img:hover {
+            transform: scale(1.02);
+        }
+        .nav {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #1a2c3e;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 15px;
+        }
+        .nav a:hover {
+            color: #0078b6;
+        }
+        .btn-primary {
+            background: #0078b6;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+        .btn-primary:hover {
+            background: #005f8c;
+            transform: translateY(-2px);
+        }
+        .mobile-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        /* Герой секция */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#c5e2ff 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-content h1 {
+            font-size: 52px;
+            font-weight: 800;
+            background: linear-gradient(125deg, #0b3550, #0078b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 32px;
+            max-width: 550px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .stat-item {
+            text-align: left;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0078b6;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.08);
+        }
+        /* Баннеры */
+        .promo-banners {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .promo-card {
+            background: #f8fafd;
+            border-radius: 24px;
+            padding: 32px;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid #eef2f8;
+        }
+        .promo-card i {
+            font-size: 48px;
+            color: #0078b6;
+            margin-bottom: 20px;
+        }
+        .promo-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        /* Категории */
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5e7c99;
+            max-width: 650px;
+            margin: 0 auto 50px;
+            font-size: 18px;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .category-card {
+            background: #ffffff;
+            border: 1px solid #eef2f8;
+            border-radius: 24px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .category-card i {
+            font-size: 48px;
+            color: #0078b6;
+            margin-bottom: 16px;
+        }
+        .category-card h4 {
+            font-size: 18px;
+        }
+        .category-card:hover {
+            border-color: #0078b6;
+            transform: translateY(-5px);
+        }
+        /* Товары */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .product-card {
+            background: white;
+            border: 1px solid #eef2f8;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.25s;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.06);
+            border-color: #cde3f5;
+        }
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e63946;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        .product-img {
+            background: #fafcff;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product-img i {
+            font-size: 64px;
+            color: #0078b6;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #5e7c99;
+            margin-bottom: 12px;
+        }
+        .product-price {
+            font-weight: 800;
+            font-size: 22px;
+            color: #0078b6;
+            margin-bottom: 16px;
+        }
+        .btn-product {
+            width: 100%;
+            background: #f0f4f9;
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-product:hover {
+            background: #0078b6;
+            color: white;
+        }
+        /* Преимущества */
+        .advantages-section {
+            background: #f8fafd;
+            padding: 70px 0;
+            margin: 50px 0;
+        }
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+        }
+        .adv-card {
+            text-align: center;
+            padding: 20px;
+        }
+        .adv-card i {
+            font-size: 52px;
+            color: #0078b6;
+            margin-bottom: 20px;
+        }
+        .adv-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        .adv-card p {
+            color: #5e7c99;
+            line-height: 1.5;
+        }
+        /* О компании */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            align-items: center;
+            margin: 70px 0;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 24px;
+        }
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        .about-image img {
+            max-width: 100%;
+            border-radius: 32px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.05);
+        }
+        /* Партнёры */
+        .partners-section {
+            background: #ffffff;
+            padding: 50px 0;
+            border-top: 1px solid #eef2f8;
+            border-bottom: 1px solid #eef2f8;
+        }
+        .partners-slider {
+            display: flex;
+            gap: 50px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: thin;
+        }
+        .partner-item {
+            min-width: 140px;
+            text-align: center;
+            opacity: 0.6;
+            transition: 0.2s;
+        }
+        .partner-item:hover {
+            opacity: 1;
+        }
+        .partner-item i {
+            font-size: 48px;
+            color: #5e7c99;
+        }
+        /* Новости */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .news-card {
+            background: white;
+            border: 1px solid #eef2f8;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .news-img {
+            height: 200px;
+            background: #f0f4f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #0078b6;
+        }
+        .news-content {
+            padding: 24px;
+        }
+        .news-date {
+            font-size: 12px;
+            color: #5e7c99;
+            margin-bottom: 8px;
+        }
+        .news-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        /* Контакты */
+        .contacts-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin: 60px 0;
+        }
+        .contacts-info {
+            flex: 1;
+        }
+        .contacts-info h3 {
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        .contacts-info p {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .map {
+            border-radius: 24px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        .map iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+        }
+        .contact-form {
+            flex: 1;
+            background: #f8fafd;
+            padding: 40px;
+            border-radius: 32px;
+        }
+        .contact-form h3 {
+            font-size: 26px;
+            margin-bottom: 24px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 32px;
+            border: 1px solid #cdddee;
+            margin-bottom: 18px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+        .btn-submit {
+            width: 100%;
+            background: #0078b6;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-submit:hover {
+            background: #005f8c;
+        }
+        /* Футер */
+        .footer {
+            background: #0a1a29;
+            color: #cbd5e6;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .footer-col a {
+            color: #cbd5e6;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .footer-col a:hover {
+            color: white;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-icons a {
+            font-size: 22px;
+        }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #1e2f3e;
+            padding-top: 30px;
+            font-size: 13px;
+        }
+        /* Модалка */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 32px;
+            padding: 32px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        /* Кнопка наверх */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #0078b6;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            z-index: 99;
+        }
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Анимация */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 900px) {
+            .nav { display: none; }
+            .mobile-btn { display: block; }
+            .logo-img { height: 120px; }
+            .hero-content h1 { font-size: 38px; }
+            .section-title { font-size: 30px; }
+        }
+        @media (max-width: 640px) {
+            .hero-content h1 { font-size: 30px; }
+            .logo-img { height: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="preloader" id="preloader">
+    <div class="preloader-logo">
+        <i class="fas fa-boxes" style="font-size: 40px; color: #0078b6;"></i>
+    </div>
+    <div class="preloader-text">ДИСТРИКОР</div>
+</div>
+
+<header class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-links">
+                <span><i class="fas fa-check-circle"></i> Официальный дистрибьютор</span>
+                <span><i class="fas fa-truck"></i> Доставка по всей РФ</span>
+            </div>
+            <div>
+                <span><i class="fas fa-clock"></i> Пн-Пт 9:00–18:00</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header-inner">
+            <img src="https://iimg.su/s/14/gwu6fUSxK2TKu1zfiU73VGDXZqaDXztQrKHIIzzdq.jpg" alt="Дистрикор" class="logo-img">
+            <div class="nav">
+                <a href="#">Главная</a>
+                <a href="#catalog">Каталог</a>
+                <a href="#about">О компании</a>
+                <a href="#news">Новости</a>
+                <a href="#contacts">Контакты</a>
+                <button class="btn-primary" id="headerBtn">Запросить КП</button>
+            </div>
+            <div class="mobile-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+        </div>
+        <div id="mobileNav" style="display: none; flex-direction: column; background: white; padding: 20px; gap: 15px; border-top: 1px solid #eef2f8;">
+            <a href="#">Главная</a><a href="#catalog">Каталог</a><a href="#about">О компании</a><a href="#news">Новости</a><a href="#contacts">Контакты</a>
+            <button class="btn-primary" id="mobileHeaderBtn">Запросить КП</button>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-bg-particles"></div>
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content fade-up">
+                <h1>Оптовые поставки бытовой химии от производителя</h1>
+                <p>Дистрикор — официальный дистрибьютор. Прямые контракты с заводами, собственный склад в Москве, доставка по всей России.</p>
+                <div class="hero-stats">
+                    <div class="stat-item"><div class="stat-number">500+</div><div>товаров в наличии</div></div>
+                    <div class="stat-item"><div class="stat-number">50+</div><div>производителей</div></div>
+                    <div class="stat-item"><div class="stat-number">24ч</div><div>обработка заказа</div></div>
+                </div>
+                <div class="hero-buttons" style="margin-top: 30px;">
+                    <button class="btn-primary" id="heroBtn">Получить коммерческое предложение</button>
+                    <button class="btn-outline" id="scrollCatalog" style="background:transparent; border:1.5px solid #0078b6; padding:10px 28px; border-radius:40px; font-weight:600; color:#0078b6; cursor:pointer;">Смотреть каталог</button>
+                </div>
+            </div>
+            <div class="hero-image fade-up">
+                <img src="https://s10.iimage.su/s/05/gLFM9NExG1XppWa8O2tSTjdM6kqAvuezSzosHPFBX.jpg" alt="Бытовая химия оптом">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="promo-banners fade-up">
+        <div class="promo-card"><i class="fas fa-truck-fast"></i><h3>Бесплатная доставка</h3><p>При заказе от 50 000 ₽ по Москве</p></div>
+        <div class="promo-card"><i class="fas fa-percent"></i><h3>Скидки от объёма</h3><p>Индивидуальные условия для оптовиков</p></div>
+        <div class="promo-card"><i class="fas fa-file-invoice"></i><h3>Помощь с тендерами</h3><p>Подготовка документов под 44-ФЗ, 223-ФЗ</p></div>
+    </div>
+
+    <div class="section-title fade-up" id="catalog">Каталог продукции</div>
+    <div class="section-sub fade-up">Более 500 наименований бытовой химии и хозтоваров в наличии на складе</div>
+
+    <div class="categories-grid fade-up">
+        <div class="category-card"><i class="fas fa-jug-detergent"></i><h4>Стирка</h4></div>
+        <div class="category-card"><i class="fas fa-pump-soap"></i><h4>Посуда</h4></div>
+        <div class="category-card"><i class="fas fa-spray-can-sparkles"></i><h4>Уборка</h4></div>
+        <div class="category-card"><i class="fas fa-hand-peace"></i><h4>Гигиена</h4></div>
+        <div class="category-card"><i class="fas fa-feather-alt"></i><h4>Кондиционеры</h4></div>
+        <div class="category-card"><i class="fas fa-toilet"></i><h4>Сантехника</h4></div>
+    </div>
+
+    <div class="products-grid fade-up" id="productsGrid"></div>
+
+    <div class="advantages-section">
+        <div class="container">
+            <div class="section-title">Почему выбирают Дистрикор</div>
+            <div class="adv-grid">
+                <div class="adv-card"><i class="fas fa-handshake"></i><h3>Прямые поставки</h3><p>Работаем напрямую с заводами-изготовителями, без посредников</p></div>
+                <div class="adv-card"><i class="fas fa-warehouse"></i><h3>Собственный склад</h3><p>Склад класса А в Москве, отгрузка в день заказа</p></div>
+                <div class="adv-card"><i class="fas fa-chart-line"></i><h3>Любой товар под заказ</h3><p>Найдём позиции под ваши потребности</p></div>
+                <div class="adv-card"><i class="fas fa-certificate"></i><h3>Сертификаты и СГР</h3><p>Полный пакет документов для госзакупок</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="about-section fade-up">
+        <div class="about-text">
+            <h2>О компании Дистрикор</h2>
+            <p>Дистрикор — динамично развивающийся дистрибьютор бытовой химии и хозяйственных товаров. Мы работаем напрямую с ведущими российскими и зарубежными производителями, обеспечивая стабильные поставки и конкурентные цены.</p>
+            <p>На складе в Москве всегда в наличии более 500 наименований: от хозяйственного мыла до профессиональной химии для клининга. Берём на себя логистику, документооборот и подготовку к тендерам по 44-ФЗ и 223-ФЗ.</p>
+            <p>Наша миссия — сделать оптовые закупки простыми, прозрачными и выгодными для каждого клиента: от небольших розничных магазинов до федеральных сетей и маркетплейсов.</p>
+        </div>
+        <div class="about-image">
+            <img src="https://i.imgur.com/y7QZlZK.jpg" alt="Склад Дистрикор">
+        </div>
+    </div>
+</div>
+
+<section class="partners-section">
+    <div class="container">
+        <div class="section-title">Наши партнёры и бренды</div>
+        <div class="partners-slider">
+            <div class="partner-item"><i class="fas fa-industry"></i><div>Завод №1</div></div>
+            <div class="partner-item"><i class="fas fa-flask"></i><div>ХимПром</div></div>
+            <div class="partner-item"><i class="fas fa-leaf"></i><div>Экохим</div></div>
+            <div class="partner-item"><i class="fas fa-hand-sparkles"></i><div>ЧистоЛайн</div></div>
+            <div class="partner-item"><i class="fas fa-recycle"></i><div>БиоТех</div></div>
+            <div class="partner-item"><i class="fas fa-pump-soap"></i><div>Жили-Мыли</div></div>
+            <div class="partner-item"><i class="fas fa-jug-detergent"></i><div>УниверсалЪ</div></div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="section-title fade-up" id="news">Новости компании</div>
+    <div class="news-grid fade-up">
+        <div class="news-card"><div class="news-img"><i class="fas fa-truck"></i></div><div class="news-content"><div class="news-date">10 июня 2025</div><div class="news-title">Расширение складских мощностей в Москве</div><div>Новый складской комплекс площадью 2000 м²</div></div></div>
+        <div class="news-card"><div class="news-img"><i class="fas fa-handshake"></i></div><div class="news-content"><div class="news-date">5 июня 2025</div><div class="news-title">Новый партнёр — завод «Жили-Мыли»</div><div>Расширение ассортимента жидкого мыла и средств для посуды</div></div></div>
+        <div class="news-card"><div class="news-img"><i class="fas fa-chart-line"></i></div><div class="news-content"><div class="news-date">1 июня 2025</div><div class="news-title">Участие в тендерах 44-ФЗ</div><div>Успешно завершены первые поставки по госконтрактам</div></div></div>
+    </div>
+
+    <div id="contacts" class="contacts-section fade-up">
+        <div class="contacts-info">
+            <h3>Контакты</h3>
+            <p><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</p>
+            <p><i class="fas fa-envelope"></i> info@distrikor.ru</p>
+            <p><i class="fas fa-map-marker-alt"></i> 115114, Москва, Дербеневская наб., 7с2</p>
+            <p><i class="fas fa-clock"></i> Пн–Пт 9:00 – 19:00, склад круглосуточно</p>
+            <div class="map">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3a6e9d0b2f8c4d2a7b5e1c3f4a2d6b8e&ll=37.617644%2C55.755819&z=12&l=map" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="contact-form">
+            <h3>Запросить оптовый прайс</h3>
+            <form id="contactForm">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <input type="email" placeholder="E-mail">
+                <select>
+                    <option>Интересует категория</option>
+                    <option>Стирка</option>
+                    <option>Посуда</option>
+                    <option>Уборка</option>
+                    <option>Гигиена</option>
+                </select>
+                <textarea rows="3" placeholder="Дополнительная информация (объём, фасовка)"></textarea>
+                <button class="btn-submit" type="submit">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Дистрикор</h4>
+                <p>Оптовый дистрибьютор бытовой химии с 2025 года</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Каталог</h4>
+                <a href="#">Стирка</a>
+                <a href="#">Посуда</a>
+                <a href="#">Уборка</a>
+                <a href="#">Гигиена</a>
+            </div>
+            <div class="footer-col">
+                <h4>Информация</h4>
+                <a href="#about">О компании</a>
+                <a href="#">Доставка и оплата</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Возврат товара</a>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p>+7 (495) 123-45-67</p>
+                <p>info@distrikor.ru</p>
+                <p>Москва, Дербеневская наб., 7с2</p>
+            </div>
+        </div>
+        <div class="copyright">© 2025 Дистрикор — оптовая торговля бытовой химией. Все права защищены.</div>
+    </div>
+</footer>
+
+<div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+
+<div class="modal" id="requestModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 style="margin-bottom: 20px;">Запрос коммерческого предложения</h3>
+        <form id="modalForm">
+            <input type="text" placeholder="Компания / ИП" required>
+            <input type="text" placeholder="Контактное лицо" required>
+            <input type="tel" placeholder="Телефон" required>
+            <textarea rows="3" placeholder="Товары и примерный объём"></textarea>
+            <button class="btn-submit" type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const products = [
+        { name: "Мыло хозяйственное 72%", desc: "200 г, флоу пак", price: "от 15 ₽/шт", icon: "fas fa-soap", badge: "хит" },
+        { name: "Жидкое мыло 5 л", desc: "6 ароматов, с дозатором", price: "от 220 ₽", icon: "fas fa-hand-peace", badge: null },
+        { name: "Универсальное моющее средство", desc: "5 л, концентрат", price: "от 190 ₽", icon: "fas fa-jug-detergent", badge: null },
+        { name: "Средство для мытья посуды 5 л", desc: "лимон/яблоко", price: "от 230 ₽", icon: "fas fa-pump-soap", badge: "новинка" },
+        { name: "Белизна 15% 5 л", desc: "концентрат, дезинфекция", price: "от 150 ₽", icon: "fas fa-hand-sparkles", badge: null },
+        { name: "Средство для чистки труб 0,5 кг", desc: "сухое, быстродействующее", price: "от 130 ₽", icon: "fas fa-toilet", badge: null },
+        { name: "Кондиционер для белья 1 л", desc: "8 ароматов", price: "от 87 ₽", icon: "fas fa-feather-alt", badge: null },
+        { name: "Гель для стирки 1,5 л", desc: "универсальный", price: "от 149 ₽", icon: "fas fa-jug-detergent", badge: null }
+    ];
+
+    function renderProducts() {
+        const container = document.getElementById('productsGrid');
+        if (!container) return;
+        container.innerHTML = products.map(p => `
+            <div class="product-card">
+                ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+                <div class="product-img"><i class="${p.icon} fa-3x"></i></div>
+                <div class="product-info">
+                    <div class="product-title">${p.name}</div>
+                    <div class="product-desc">${p.desc}</div>
+                    <div class="product-price">${p.price}</div>
+                    <button class="btn-product requestBtn">Запросить опт</button>
+                </div>
+            </div>
+        `).join('');
+        document.querySelectorAll('.requestBtn').forEach(btn => {
+            btn.addEventListener('click', () => document.getElementById('requestModal').style.display = 'flex');
+        });
+    }
+
+    const modal = document.getElementById('requestModal');
+    const closeModal = document.querySelector('.close-modal');
+    const openBtns = ['headerBtn', 'heroBtn', 'mobileHeaderBtn'];
+    openBtns.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', () => modal.style.display = 'flex');
+    });
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('✅ Спасибо! Наш менеджер свяжется с вами.');
+        e.target.reset();
+    });
+    document.getElementById('modalForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('✅ Спасибо! Наш менеджер свяжется с вами.');
+        e.target.reset();
+        modal.style.display = 'none';
+    });
+
+    document.getElementById('scrollCatalog')?.addEventListener('click', () => {
+        document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const mobBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    if (mobBtn) {
+        mobBtn.addEventListener('click', () => {
+            if (mobileNav.style.display === 'none' || !mobileNav.style.display) mobileNav.style.display = 'flex';
+            else mobileNav.style.display = 'none';
+        });
+    }
+
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) scrollTop.classList.add('show');
+        else scrollTop.classList.remove('show');
+    });
+    scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const faders = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const pre = document.getElementById('preloader');
+            if (pre) pre.classList.add('fade-out');
+        }, 1500);
+    });
+
+    renderProducts();
+</script>
+</body>
+</html>
